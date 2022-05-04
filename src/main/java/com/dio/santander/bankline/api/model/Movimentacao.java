@@ -13,10 +13,14 @@ public class Movimentacao {
 
     @Column(name = "data_hora")
     private LocalDateTime dataHora;
-    
+
     private String descricao;
     private Double valor;
 
+    @Column(name = "id_conta")
+    private Integer idConta;
+
+    //@Enumerated grava o valor literal do enum no banco
     @Enumerated(EnumType.STRING)
     private MovimentacaoTipo tipo;
 
@@ -50,6 +54,14 @@ public class Movimentacao {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public Integer getIdConta() {
+        return idConta;
+    }
+
+    public void setIdConta(Integer idConta) {
+        this.idConta = idConta;
     }
 
     public MovimentacaoTipo getTipo() {
