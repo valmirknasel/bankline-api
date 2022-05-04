@@ -7,6 +7,7 @@ import com.dio.santander.bankline.api.repository.CorrentistaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class CorrentistaService {
@@ -29,5 +30,9 @@ public class CorrentistaService {
         conta.setNumero(new Date().getTime());
         correntista.setConta(conta);
         correntistaRepository.save(correntista);
+    }
+
+    public List<Correntista> findAll() {
+        return correntistaRepository.findAll();
     }
 }
