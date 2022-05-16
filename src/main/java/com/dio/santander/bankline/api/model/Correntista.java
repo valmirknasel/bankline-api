@@ -1,10 +1,11 @@
 package com.dio.santander.bankline.api.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tab_correntista")
-public class Correntista {
+public class Correntista implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

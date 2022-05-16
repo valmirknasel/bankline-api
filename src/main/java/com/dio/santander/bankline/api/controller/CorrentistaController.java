@@ -26,4 +26,9 @@ public class CorrentistaController {
     public void save(@RequestBody NovoCorrentista novoCorrentista) {
         correntistaService.save(novoCorrentista);
     }
+
+    @GetMapping("/{idCorrentista}")
+    public Correntista getCorrentistaByIdCorrentista(@PathVariable Integer idCorrentista) {
+        return correntistaService.getCorrentistaByIdCorrentista(idCorrentista);
+    }
 }

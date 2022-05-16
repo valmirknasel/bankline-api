@@ -2,9 +2,10 @@ package com.dio.santander.bankline.api.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class Conta {
+public class Conta implements Serializable {
 
     @Column(name = "conta_numero")
     private Long numero;

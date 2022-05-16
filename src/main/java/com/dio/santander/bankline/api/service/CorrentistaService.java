@@ -35,4 +35,9 @@ public class CorrentistaService {
     public List<Correntista> findAll() {
         return correntistaRepository.findAll();
     }
+
+    public Correntista getCorrentistaByIdCorrentista(Integer idCorrentista) {
+        //TODO tratar a excecao de correntista nao encontrado...
+        return correntistaRepository.findById(idCorrentista).orElse(null);
+    }
 }
