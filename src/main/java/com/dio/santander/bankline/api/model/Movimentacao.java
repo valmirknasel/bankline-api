@@ -1,11 +1,12 @@
 package com.dio.santander.bankline.api.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tab_movimentacao")
-public class Movimentacao {
+public class Movimentacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +18,8 @@ public class Movimentacao {
     private String descricao;
     private Double valor;
 
-    @Column(name = "id_conta")
-    private Integer idConta;
+    @Column(name = "id_correntista")
+    private Integer idCorrentista;
 
     //@Enumerated grava o valor literal do enum no banco
     @Enumerated(EnumType.STRING)
@@ -56,12 +57,12 @@ public class Movimentacao {
         this.valor = valor;
     }
 
-    public Integer getIdConta() {
-        return idConta;
+    public Integer getIdCorrentista() {
+        return idCorrentista;
     }
 
-    public void setIdConta(Integer idConta) {
-        this.idConta = idConta;
+    public void setIdCorrentista(Integer idConta) {
+        this.idCorrentista = idConta;
     }
 
     public MovimentacaoTipo getTipo() {

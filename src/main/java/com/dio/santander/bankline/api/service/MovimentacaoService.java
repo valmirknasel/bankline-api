@@ -31,10 +31,10 @@ public class MovimentacaoService {
         movimentacao.setValor(valor);
         movimentacao.setDataHora(LocalDateTime.now());
         movimentacao.setDescricao(novaMovimentacao.getDescricao());
-        movimentacao.setIdConta(novaMovimentacao.getIdConta());
+        movimentacao.setIdCorrentista(novaMovimentacao.getIdCorrentista());
         movimentacao.setTipo(novaMovimentacao.getTipo());
 
-        Correntista correntista = correntistaRepository.findById(novaMovimentacao.getIdConta()).orElse(null);
+        Correntista correntista = correntistaRepository.findById(novaMovimentacao.getIdCorrentista()).orElse(null);
         if(correntista != null) {
             correntista.getConta().setSaldo(correntista.getConta().getSaldo() + valor);
             correntistaRepository.save(correntista);
