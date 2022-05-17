@@ -2,7 +2,7 @@ package com.dio.santander.bankline.api.dto;
 
 import com.dio.santander.bankline.api.model.MovimentacaoTipo;
 
-public class NovaMovimentacao {
+public class NovaMovimentacaoDTO {
 
     private String descricao;
     private Double valorMovimentacao;
