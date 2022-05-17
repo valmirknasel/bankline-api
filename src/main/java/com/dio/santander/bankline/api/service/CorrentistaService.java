@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CorrentistaService {
@@ -36,8 +37,16 @@ public class CorrentistaService {
         return correntistaRepository.findAll();
     }
 
-    public Correntista getCorrentistaByIdCorrentista(Integer idCorrentista) {
-        //TODO tratar a excecao de correntista nao encontrado...
-        return correntistaRepository.findById(idCorrentista).orElse(null);
+    public Optional<Correntista> getCorrentistaByIdCorrentista(Integer idCorrentista) {
+        return correntistaRepository.findById(idCorrentista);
+    }
+
+    public Correntista updateCorrentista(Correntista correntista) {
+        var correntistaAtualizado = correntistaRepository.findById(correntista.getId());
+        if(correntistaAtualizado.isPresent()) {
+            return correntistaRepository.save(correntista);
+        } else {
+            throw new IllegalArgumentException("Correntista " + correntista.getNome() + "não encontrado!");
+        }
     }
 }
