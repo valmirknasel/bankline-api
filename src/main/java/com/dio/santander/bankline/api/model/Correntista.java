@@ -1,7 +1,10 @@
 package com.dio.santander.bankline.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "tab_correntista")
@@ -19,6 +22,19 @@ public class Correntista implements Serializable {
 
     @Embedded
     private Conta conta;
+
+    @OneToMany(mappedBy = "correntista")
+    @JsonIgnore
+    private List<Movimentacao> movimentacoes;
+
+
+    public List<Movimentacao> getMovimentacoes() {
+        return movimentacoes;
+    }
+
+    public void setMovimentacoes(List<Movimentacao> movimentacoes) {
+        this.movimentacoes = movimentacoes;
+    }
 
     public Conta getConta() {
         return conta;
