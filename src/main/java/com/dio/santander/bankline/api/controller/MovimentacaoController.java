@@ -1,8 +1,9 @@
 package com.dio.santander.bankline.api.controller;
 
-import com.dio.santander.bankline.api.dto.NovaMovimentacao;
-import com.dio.santander.bankline.api.model.Movimentacao;
+import com.dio.santander.bankline.api.dto.NovaMovimentacaoDTO;
+import com.dio.santander.bankline.api.dto.TabelaMovimentacaoCompletaDTO;
 import com.dio.santander.bankline.api.service.MovimentacaoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,13 +18,19 @@ public class MovimentacaoController {
         this.movimentacaoService = movimentacaoService;
     }
 
-    @GetMapping
-    public List<Movimentacao> findAll() {
-        return movimentacaoService.findAll();
+    @PostMapping
+    public ResponseEntity<String> save(@RequestBody NovaMovimentacaoDTO novaMovimentacao) {
+        try {
+            movimentacaoService.save(novaMovimentacao);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @PostMapping
-    public void save(@RequestBody NovaMovimentacao novaMovimentacao) {
-        movimentacaoService.save(novaMovimentacao);
+    @GetMapping()
+    public ResponseEntity<List<TabelaMovimentacaoCompletaDTO>> listaCompleta() {
+        return ResponseEntity.ok().body(movimentacaoService.findAllDTO());
     }
+
 }
