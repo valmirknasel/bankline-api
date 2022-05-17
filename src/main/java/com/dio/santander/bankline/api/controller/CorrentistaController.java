@@ -3,6 +3,7 @@ package com.dio.santander.bankline.api.controller;
 import com.dio.santander.bankline.api.dto.NovoCorrentista;
 import com.dio.santander.bankline.api.model.Correntista;
 import com.dio.santander.bankline.api.service.CorrentistaService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,12 @@ public class CorrentistaController {
     }
 
     @GetMapping("/{idCorrentista}")
-    public Correntista getCorrentistaByIdCorrentista(@PathVariable Integer idCorrentista) {
-        return correntistaService.getCorrentistaByIdCorrentista(idCorrentista);
+    public ResponseEntity getCorrentistaByIdCorrentista(@PathVariable Integer idCorrentista) {
+        var correntista = correntistaService.getCorrentistaByIdCorrentista(idCorrentista);
+        if(correntista.isPresent()) {
+            return ResponseEntity.ok().body(correntista.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
