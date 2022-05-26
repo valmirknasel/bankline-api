@@ -1,12 +1,17 @@
 package com.dio.santander.bankline.api.dto;
 
 import com.dio.santander.bankline.api.model.MovimentacaoTipo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class NovaMovimentacaoDTO {
 
+    @JsonProperty("_descricao")
     private String descricao;
+    @JsonProperty("_valorMovimentacao")
     private Double valorMovimentacao;
+    @JsonProperty("_tipoMovimentacao")
     private MovimentacaoTipo tipoMovimentacao;
+    @JsonProperty("_idCorrentista")
     private Integer idCorrentista;
 
     public String getDescricao() {
